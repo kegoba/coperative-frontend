@@ -34,6 +34,7 @@ const Login = () => {
       const resp  =   await loginofficer(data)
       console.log(resp.status)
       if (resp.status===200){
+        console.log(resp.status, resp.data)
       navigate("/")
     }else{
 
