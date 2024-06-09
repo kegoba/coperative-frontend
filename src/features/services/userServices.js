@@ -66,7 +66,7 @@ export const getAllUsers  = async (data)=> {
     
 }
 
-//
+///wallet/fundwallet
 
 export const getSingleUser  = async (id)=> {
   const response = await axiosInstance.get("/getsingleuser/"+id);
@@ -76,5 +76,13 @@ export const getSingleUser  = async (id)=> {
 }
 
 
+
+
+export const FundWalletservices  = async (data)=> {
+  const response = await axiosInstance.post("/wallet/fundwallet",data);
+
+  return response.data
+    
+}
 
    

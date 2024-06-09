@@ -5,7 +5,7 @@ import { NotificationContainer, NotificationManager } from 'react-notifications'
 import 'react-notifications/lib/notifications.css';
 
 import { useNavigate } from 'react-router-dom';
-import {loginUser} from "../services/userServices"
+import {FundWalletservices} from "../services/userServices"
 import {
     amountValidation,
       } from "../services/validationService"
@@ -23,15 +23,15 @@ const FundWallet = () => {
     }
 
     const data ={
-       amount
+       amount : parseInt(amount)
     }
-    console.log(data)
-   /* try{
-      const resp  =   await loginUser(data)
-      console.log(resp.status)
-      if (resp.status===200){
-        console.log(resp.status, resp.data)
-      navigate("/")
+    try{
+      const response  =   await FundWalletservices(data)
+      const { message: { status, data: { authorization_url } } } = response
+      console.log( status,"status")
+      console.log(authorization_url, "url")
+      if (status===true){
+    window.location.href = authorization_url
     }else{
 
       setAmount("")
@@ -41,9 +41,9 @@ const FundWallet = () => {
     }catch(error){
         setAmount("")
       console.log(error)
-      NotificationManager.error("wrong password or email", 1000);
+      NotificationManager.error("Could Not Get Payment Url");
 
-    }*/
+    }
   };
 
   
