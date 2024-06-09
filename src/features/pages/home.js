@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import UserConsultations from './userConsultation'
-import FilterAllConsulations from './filterAllConsultation'
+import TransactionHistory from './transactionHistory'
 
 import {getAllConsultation } from "../services/userServices"
-import Dashboard from "./dashboard"
+import Sidebar from "./dashboard"
 
 
 import Motivation from "./motivation"
 import Blog from './blog'
-import Hero from "./heros"
+
+
 
 const Home = () => {
   const [checkUser, setCheckUser]= useState(false)
@@ -24,11 +25,12 @@ const Home = () => {
 
   }, []);
   return (
-    < div >   
+    < div >  
     
     <Blog/>
   <Motivation />
-     <Hero/>
+   
+  <TransactionHistory/>
             
     </div>
   )

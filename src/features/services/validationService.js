@@ -15,6 +15,25 @@ export const emailValidation = (email) => {
     return input.length >= 6;
   };
 
+  
+  
+  export const amountValidation = (amount) => {
+
+    return !isNaN(amount) && amount >=1000
+  };
+
+  export const durationValidation = (input) => {
+
+    const validOptions = [6, 12];
+
+    // Check if the selected value is in the list of valid options
+    if (validOptions.includes(input)) {
+      return { valid: true, message: "Valid selection" };
+    
+    }
+    
+  };
+
   export const textAreaValidation = (textArea) => {
     
     return textArea.length >= 10;

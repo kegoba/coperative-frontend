@@ -31,11 +31,12 @@ const Navbar = () => {
          <Link  to="/" className='text-3xl font-bold mr-4 sm:text-4xl'>  <img  src={medlogo}className='h-12 w-17' />  </Link>
           <ul className='hidden md:flex'>
           <li><Link className=' p-4' to="/"  >Home</Link></li>
-          <li><Link className=' p-4' to="/userslist" >ALL users </Link> </li>
+          <li><Link className=' p-4' to="/loanhistory" >Loan Status </Link> </li>
           <li><Link className=' p-4' to="/calculator" >Loan Caculator </Link> </li>
+          <li><Link className=' p-4' to="/fundwallet" >Fund Wallet </Link> </li>
           </ul>
         </div>
-        <div className='hidden md:flex pr-4'>
+        <div className='hidden md:flex pr-4'> 
           <Link to="/login" className='px-8 py-3'>
             Login
           </Link>
@@ -66,3 +67,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+

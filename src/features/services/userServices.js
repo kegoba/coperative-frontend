@@ -5,15 +5,15 @@ import axiosInstance from "./axiosConfig"
 
 
 
-export const  calculate = (amount, numberOfMonths)=>{
+export const  calculate = (amount, duration)=>{
 
-  const interest = (amount * (5 / 100) * numberOfMonths);
+  const interest = (amount * (5 / 100) * duration);
   const totalAmountToBePaid = amount + interest
-  const monthlyReturn = totalAmountToBePaid/numberOfMonths
+  const monthlyReturn = totalAmountToBePaid/duration
   //const monthlyInterestRate = interestRate / 100 / numberOfMonths;  //Math.round
-  return {interest : interest.toFixed(2),
-        totalAmountToBePaid : totalAmountToBePaid.toFixed(2), 
-        monthlyReturn:monthlyReturn.toFixed(2) };
+  return {interest : parseInt(interest),
+        totalAmountToBePaid : parseInt(totalAmountToBePaid), 
+        monthlyReturn:parseInt(monthlyReturn) };
 } 
 
 export const getAllConsultation  = async ()=> {
@@ -32,8 +32,8 @@ export const getSingleConsulation  = async (data)=> {
 }
 
 
-export const createConsultation  = async (data)=> {
-  const response = await axiosInstance.post("/createconsultation",data);
+export const loanRequestService  = async (data)=> {
+  const response = await axiosInstance.post("/user/loanrequest",data);
 
   return response
     
@@ -46,7 +46,7 @@ export const registerUser  = async (data)=> {
     
 }
 
-export const loginofficer  = async (data)=> {
+export const loginUser  = async (data)=> {
   const response = await axiosInstance.post("/user/login",data);///user/login
   if(response.status ===200){
     localStorage.setItem("user", JSON.stringify(response.data.data))

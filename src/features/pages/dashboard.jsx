@@ -1,48 +1,48 @@
 import React from 'react';
 
-const Dashboard = () => {
+const Sidebar = () => {
+  // Mock user data
+  const userData = {
+    name: "John Doe",
+    email: "john@example.com",
+    settings: {
+      darkMode: true,
+      notifications: true,
+      language: "English",
+    },
+    walletBalance: 1000,
+    interestEarned: 50,
+  };
+
   return (
-    <div className="min-h-screen bg-gray-100 flex">
-      <aside className="w-64 bg-white shadow-md">
-        <div className="p-4 border-b">
-          <h1 className="text-xl font-semibold">User Dashboard</h1>
+    <div className="bg-blue-800 text-white w-64 h-full flex flex-col fixed z-10 top-0 left-0">
+      <div className="p-4 bg-blue-900">
+        <h1 className="text-2xl font-bold">{userData.name}</h1>
+        <p className="text-sm">{userData.email}</p>
+      </div>
+      <div className="flex-1 overflow-y-auto">
+        <ul className="py-4">
+          <li className="px-4 py-2 hover:bg-blue-700 cursor-pointer">Dashboard</li>
+          <li className="px-4 py-2 hover:bg-blue-700 cursor-pointer">Profile</li>
+          <li className="px-4 py-2 hover:bg-blue-700 cursor-pointer">Settings</li>
+          <li className="px-4 py-2 hover:bg-blue-700 cursor-pointer">Logout</li>
+        </ul>
+      </div>
+      <div className="p-4 bg-blue-900">
+        <h2 className="text-lg font-bold mb-2">User Info</h2>
+        <div className="mb-4">
+          <p>Wallet Balance: <span className="font-semibold">${userData.walletBalance}</span></p>
+          <p>Interest Earned: <span className="font-semibold">${userData.interestEarned}</span></p>
         </div>
-        <nav className="p-4">
-          <ul>
-            <li className="mb-2">
-              <a href="#" className="block p-2 rounded bg-blue-500 text-white">Overview</a>
-            </li>
-            <li className="mb-2">
-              <a href="#" className="block p-2 rounded hover:bg-blue-100">Profile</a>
-            </li>
-            <li className="mb-2">
-              <a href="#" className="block p-2 rounded hover:bg-blue-100">Settings</a>
-            </li>
-            <li className="mb-2">
-              <a href="#" className="block p-2 rounded hover:bg-blue-100">Logout</a>
-            </li>
-          </ul>
-        </nav>
-      </aside>
-      <main className="flex-1 p-6">
-        <h2 className="text-2xl font-semibold mb-6">Welcome, User!</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white p-4 rounded shadow-md">
-            <h3 className="text-xl font-semibold">Profile</h3>
-            <p className="mt-2">Manage your profile information.</p>
-          </div>
-          <div className="bg-white p-4 rounded shadow-md">
-            <h3 className="text-xl font-semibold">Settings</h3>
-            <p className="mt-2">Adjust your account settings.</p>
-          </div>
-          <div className="bg-white p-4 rounded shadow-md">
-            <h3 className="text-xl font-semibold">Notifications</h3>
-            <p className="mt-2">Check your latest notifications.</p>
-          </div>
+        <h2 className="text-lg font-bold mb-2">Settings</h2>
+        <div>
+          <p>Dark Mode: <span className="font-semibold">{userData.settings.darkMode ? "Enabled" : "Disabled"}</span></p>
+          <p>Notifications: <span className="font-semibold">{userData.settings.notifications ? "Enabled" : "Disabled"}</span></p>
+          <p>Language: <span className="font-semibold">{userData.settings.language}</span></p>
         </div>
-      </main>
+      </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default Sidebar;

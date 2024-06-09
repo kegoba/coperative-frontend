@@ -33,7 +33,7 @@ const articles = [
   },
 ];
 
-export default function Blog() {
+const  Blog=()=> {
   return (
     <section className="py-14 lg:py-24">
       <div className="container">
@@ -69,3 +69,7 @@ export default function Blog() {
     </section>
   );
 }
+
+
+
+export default Blog

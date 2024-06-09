@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+
+.bg-dark-purple {
+  background-color: #3b3b98;
+}
+
+.bg-light-white {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
