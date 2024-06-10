@@ -8,17 +8,14 @@ import  Footer from './features/pages/footer'
 
 
 
-
-
 function App() {
   return (
     <div className="App">
-      <div>
-      </div>
+
       <div className='mb-5 '>
       <Navbar/>
       </div>
- 
+     
     
       <div className='mt-10'>
         <Footer/>

@@ -28,10 +28,7 @@ const Home = () => {
     < div >  
     
     <Blog/>
-  <Motivation />
-   
-  <TransactionHistory/>
-            
+  <Motivation />       
     </div>
   )
 }

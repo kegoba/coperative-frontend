@@ -13,14 +13,14 @@ import {amountValidation,
 const LoanRequest = () => {
   const navigate = useNavigate()
   const [duration, setDuration] = useState('');
-  const [amount, setAmount] = useState('');
+  const [amountBorrowed, setAmountBorrowed] = useState('');
   const [result, setResult] = useState()
  
 
 
   
   const handleAmount = (e)=>{
-    setAmount(parseInt(e.target.value))
+    setAmountBorrowed(parseInt(e.target.value))
 
     
   }
@@ -38,7 +38,7 @@ const LoanRequest = () => {
 
 
   const handleCaculate = async (event) => {
-    if (!amountValidation(amount)){
+    if (!amountValidation(amountBorrowed)){
       NotificationManager.error("Invalid Amount" );
       return
     }
@@ -46,14 +46,15 @@ const LoanRequest = () => {
         NotificationManager.error("Select Duration" );
         return
       }
-    const response = calculate(amount, duration)
+    const response = calculate(amountBorrowed, duration)
     setResult(response)
   };
 
-
+ 
   const handLoanRequest = async ()=>{
-    const loanReference = String(Math.random() * (10 - 9) + "az");
-    const data ={ amount , loanReference ,duration , ...result}
+    //const loanReference = String(Math.random() * (10 - 9) + "az");
+    
+    const data ={ amountBorrowed,duration , ...result}
     console.log(data)
     try{
       const response = await loanRequestService(data)
@@ -63,12 +64,12 @@ const LoanRequest = () => {
       navigate("/")
     }else{
 
-      setAmount("")
       setDuration("")
+      setAmountBorrowed("")
     }
     
     }catch(error){
-      setAmount("")
+      setAmountBorrowed("")
       setDuration("")
       console.log(error)
       NotificationManager.error("Could Not Save Your Request");
@@ -88,7 +89,7 @@ const LoanRequest = () => {
         <div class="grid grid-cols-1 gap-4">
             <div class="grid grid-cols-3 gap-4">
                 <p class="text-gray-700">Monthly Interest:</p>
-                <p class="col-span-2 text-gray-700">{result?.interest.toLocaleString()}</p>
+                <p class="col-span-2 text-gray-700">{result?.totalInterest.toLocaleString()}</p>
             </div>
             <div class="grid grid-cols-3 gap-4">
                 <p class="text-gray-700">Monthly Payable:</p>

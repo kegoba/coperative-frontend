@@ -1,90 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { getAllConsultation } from '../services/userServices';
-import {Link}  from "react-router-dom"
+import React from 'react';
 
-const TransactionHistory = () => {
-  const [consultations, setConsultations] = useState([]);
-  const [filters, setFilters] = useState({
-    date: '',
-    patientName: '',
-    healthcareProvider: '',
-    consultationType: '',
-    medicalCondition: '',
-  });
-
-  useEffect(() => {
-    getAllConsultation()
-      .then((datas) => {
-        if (datas) {
-          setConsultations(datas.data);
-        } else {
-          console.log('No data');
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFilters({ ...filters, [name]: value });
-  };
-
-  const filteredData = consultations.filter((item) => {
-    return (
-      item.date.includes(filters.date) &&
-      (item.officerId?.name?.toLowerCase().includes(filters.patientName.toLowerCase()) || '') &&
-      item.healthcareProvider.toLowerCase().includes(filters.healthcareProvider.toLowerCase()) &&
-      item.consultationType.toLowerCase().includes(filters.consultationType.toLowerCase()) &&
-      item.medicalCondition.toLowerCase().includes(filters.medicalCondition.toLowerCase())
-    );
-  });
-
+const TransactionHistory = ({ data }) => {
   return (
-   
-
-      <div className="container">
-        <h2 className="text-xl font-bold mb-4">Transaction History</h2>
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-300">
-            <thead>
-              <tr>
-                <th className="py-2 px-4 border-b">Date</th>
-                <th className="py-2 px-4 border-b">Name</th>
-                <th className="py-2 px-4 border-b">Amount</th>
-                <th className="py-2 px-4 border-b">reference</th>
-                
-              </tr>
-            </thead>
-            <tbody>
-              {filteredData.length > 0 ? (
-                filteredData.map((consultation, key) => (
-                  <tr key={key}>
-                    <td className="py-2 px-4 border-b">
-                      {new Date(consultation.date).toLocaleDateString()}
-                    </td>
-                    <td className="py-2 px-4 border-b">
-                      {consultation.officerId?.name || 'N/A'}
-                    </td>
-                    <td className="py-2 px-4 border-b">{consultation.healthcareProvider}</td>
-                    <td className="py-2 px-4 border-b">{consultation.consultationType}</td>
-                    <td className="py-2 px-4 border-b">{consultation.medicalCondition}</td>
-                    
-                  </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="5" className="py-2 px-4 text-center border-b">
-                    You don't have any transaction
+    <div className="container">
+      <h2 className="text-xl font-bold mb-4">Transaction History</h2>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white border border-gray-300">
+          <thead className='bg-[#2DC0AC] text-white'>
+            <tr>
+              <th className="py-2 px-4 border-b">Date</th>
+              <th className="py-2 px-4 border-b">Balance</th>
+              <th className="py-2 px-4 border-b">Interest</th>
+              <th className="py-2 px-4 border-b">Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.length > 0 ? (
+              data.map((savings, key) => (
+                <tr key={key}>
+                  <td className="py-2 px-4 border-b">
+                    {new Date(savings.date).toLocaleDateString()}
                   </td>
+                  <td className="py-2 px-4 border-b">{savings.balance}</td>
+                  <td className="py-2 px-4 border-b">{savings.interest}</td>
+                  <td className="py-2 px-4 border-b">{savings.paymentReference.join(', ')}</td>
                 </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4" className="py-2 px-4 text-center border-b">
+                  You don't have any transactions
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
-  
+    </div>
   );
 };
 

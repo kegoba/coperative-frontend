@@ -33,24 +33,23 @@ const articles = [
   },
 ];
 
-const  Blog=()=> {
+const Blog = () => {
   return (
     <section className="py-14 lg:py-24">
-      <div className="container">
-        <h2 className="text-center text-3xl lg:text-4xl text-primary-dark-blue mb-5 lg:text-left lg:mb-10">
+      <div className="container mx-auto px-4">
+      <h2 className="text-center text-3xl lg:text-4xl text-primary-dark-blue mb-5 lg:mb-10">
           Latest Articles
         </h2>
-        <div className="grid grid-cols-1 gap-4 lg:gap-4 lg:grid-cols-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {articles.map((article) => (
-            <article key={article.title} className="bg-white">
+            <article key={article.title} className="bg-white shadow-md rounded">
               <div className="aspect-w-16 aspect-h-10 lg:aspect-w-4 lg:aspect-h-3">
                 <img
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                   src={article.imgPath}
                   alt={article.imgAlt}
                 />
               </div>
-
               <div className="px-7 pt-5 pb-10 lg:p-6">
                 <span className="text-neutral-grayish-blue text-xs">
                   {article.author}
@@ -68,7 +67,7 @@ const  Blog=()=> {
       </div>
     </section>
   );
-}
+};
 
 
 
