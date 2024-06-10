@@ -55,7 +55,7 @@ const Blog = () => {
                   {article.author}
                 </span>
                 <h4 className="text-primary-dark-blue text-sm py-2 hover:text-green-400">
-                  <a href="#">{article.title}</a>
+                  {article.title}
                 </h4>
                 <p className="text-neutral-grayish-blue text-xs">
                   {article.description}

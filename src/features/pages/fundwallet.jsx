@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import {Link} from "react-router-dom"
+
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 
@@ -22,7 +21,7 @@ const FundWallet = () => {
       navigate("/login")
     }
 
-  }, []);
+  }, [navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

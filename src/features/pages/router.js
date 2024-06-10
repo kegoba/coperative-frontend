@@ -24,7 +24,7 @@ const PageRouter = ()=>{
         <Route  path="/transactionhistory" element={<TransactionHistory/>} /> 
         <Route  path="/fundwallet" element={<FundWallet/>} /> 
         <Route  path="/dashboard" element={<Dashboard/>} /> 
-        <Route  path="/success?trxref=${trxref}&reference=${reference}`" element={<SuccessTransaction/>} />
+        <Route  path="/success" element={<SuccessTransaction/>} />
     </Routes>
     )
 }

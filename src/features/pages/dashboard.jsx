@@ -47,7 +47,7 @@ const Dashboard = () => {
       navigate("/login")
     }
 
-  }, []);
+  }, [navigate]);
 
   const handleSidebarToggle = () => {
     setSidebarOpen(!sidebarOpen);

@@ -8,7 +8,6 @@ const Navbar = () => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
 
-  const [checkUser, setCheckUser] = useState(false);
 
   useEffect(() => {
     // Your user checking logic here
