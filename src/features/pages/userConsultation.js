@@ -27,21 +27,7 @@ const UserConsultations = () => {
         const checkUserLogin = localStorage.getItem("user")
         const user = JSON.parse(checkUserLogin)
         if (user){
-          const data={officerId: user.id}
           
-          const resp = getSingleConsulation(data)
-          .then((result)=>{
-            
-            if (result){
-              setConsultations(result.data)
-  
-            }else{
-              console.log("no data")
-            }
-          }).catch(err=>{
-            console.log(err)
-          })
-
         }else{
           nevigate("/login")
         }

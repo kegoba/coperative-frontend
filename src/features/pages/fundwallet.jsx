@@ -14,6 +14,15 @@ const FundWallet = () => {
   const navigate = useNavigate()
   const [amount, setAmount] = useState('');
  
+  
+  React.useEffect(() => {
+    const checkUserLogin = localStorage.getItem("user")
+    const user = JSON.parse(checkUserLogin)
+    if (!user){
+      navigate("/login")
+    }
+
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

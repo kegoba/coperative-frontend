@@ -15,7 +15,15 @@ const LoanRequest = () => {
   const [duration, setDuration] = useState('');
   const [amountBorrowed, setAmountBorrowed] = useState('');
   const [result, setResult] = useState()
- 
+  React.useEffect(() => {
+    const checkUserLogin = localStorage.getItem("user")
+    const user = JSON.parse(checkUserLogin)
+    if (!user){
+      navigate("/login")
+    }
+
+  }, []);
+
 
 
   

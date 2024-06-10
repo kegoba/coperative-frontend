@@ -63,3 +63,40 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+
+
+
+/* Make the table responsive on mobile */
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 0 1rem;
+  }
+  .overflow-x-auto {
+    overflow-x: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 0.5rem;
+    border: none;
+    text-align: left;
+  }
+  th {
+    background-color: #2DC0AC;
+    color: #fff;
+  }
+  td {
+    border-bottom: 1px solid #ddd;
+  }
+  td:last-child {
+    border-bottom: none;
+  }
+}
+
+
+.fill-accent {
+  fill: #2DC0AC;
+}

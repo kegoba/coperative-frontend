@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import UserConsultations from './userConsultation'
+
 import TransactionHistory from './transactionHistory'
 
 import {getAllConsultation } from "../services/userServices"

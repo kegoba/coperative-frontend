@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import TransactionHistory from './transactionHistory';
 import LoanHistory from './loanHistory';
 import { getDashboardDetails, interestEarned } from '../services/userServices';
@@ -10,11 +10,17 @@ const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [savings, setSavings] = useState({ balance: 0, interest: 0 });
   const [loans, setLoans] = useState([]);
+  const [transaction, setTransaction] = useState([]);
   const [cashOut, setCashOut] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
+    const checkUserLogin = localStorage.getItem("user")
+    const user = JSON.parse(checkUserLogin)
+    if (user){
+      
+   
     getDashboardDetails()
       .then((response) => {
         if (response.status === 200) {
@@ -25,17 +31,23 @@ const Dashboard = () => {
           const calculatedDate = new Date().toISOString().slice(0, 10);
 
           const cash = interestEarned(balance, depositedDate, calculatedDate);
+          console.log(response.data.transaction, "Transaction Data");
 
+          setTransaction(response.data.transaction);
           setCashOut(cash);
           setUser(response.data.user);
           setSavings({ interest, balance });
           setLoans(response.data.loans);
         } else {
-          navigate('/login');
+         
         }
       })
       .catch((error) => console.error(error));
-  }, [navigate]);
+    }else{
+      navigate("/login")
+    }
+
+  }, []);
 
   const handleSidebarToggle = () => {
     setSidebarOpen(!sidebarOpen);
@@ -47,16 +59,16 @@ const Dashboard = () => {
       <div className={`lg:w-1/5 ${sidebarOpen ? 'block' : 'hidden'} fixed inset-0 z-50 bg-white lg:bg-transparent lg:relative`}>
         <Sidebar className="h-full lg:h-auto">
           <Menu>
-            <MenuItem className="">Hello, {user && user.name}</MenuItem>
-            <SubMenu label="User Profile" className="">
-              <MenuItem className="">UserInfo</MenuItem>
+            <MenuItem>Hello, {user && user.name}</MenuItem>
+            <SubMenu label="User Profile">
+              <MenuItem>UserInfo</MenuItem>
             </SubMenu>
-            <MenuItem className="">Wallet Balance: {savings.balance}</MenuItem>
-            <MenuItem className="">Interest Earned: {cashOut}</MenuItem>
-            <MenuItem className="">Settings</MenuItem>
-            <SubMenu label="Loan" className="">
-              <MenuItem className="">Request</MenuItem>
-              <MenuItem className="">Cancel</MenuItem>
+            <MenuItem>Wallet Balance: {savings.balance}</MenuItem>
+            <MenuItem>Interest Earned: {cashOut}</MenuItem>
+            <MenuItem>Settings</MenuItem>
+            <SubMenu label="Loan">
+              <MenuItem>Request</MenuItem>
+              <MenuItem>Cancel</MenuItem>
             </SubMenu>
           </Menu>
         </Sidebar>
@@ -72,7 +84,7 @@ const Dashboard = () => {
         </div>
 
         <div className="mt-10">
-          <TransactionHistory data={savings} />
+          <TransactionHistory data={transaction} />
         </div>
         <div className="mt-20">
           <LoanHistory data={loans} />
