@@ -53,10 +53,11 @@ const motivationItems = [
             {motivationItems.map((item) => (
               <div key={item.title} className="flex flex-col items-center lg:items-start">
                 <div className="flex justify-center lg:justify-start">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="fill-accent" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
-                <rect x="2" y="4" width="20" height="16" rx="2" ry="2"/>
-                <line x1="2" y1="10" x2="22" y2="10"/>
-                </svg>
+                <img
+                  className="object-cover"
+                  src={item.imgPath}
+                  alt={item.imgAlt}
+                />
                 </div>
                 <h2 className="text-lg text-primary-dark-blue py-4 lg:pt-9 lg:pb-6 lg:text-xl lg:font-bold">
                   {item.title}

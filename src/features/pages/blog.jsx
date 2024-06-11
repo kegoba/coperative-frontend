@@ -51,9 +51,6 @@ const Blog = () => {
                 />
               </div>
               <div className="px-7 pt-5 pb-10 lg:p-6">
-                <span className="text-neutral-grayish-blue text-xs">
-                  {article.author}
-                </span>
                 <h4 className="text-primary-dark-blue text-sm py-2 hover:text-green-400">
                   {article.title}
                 </h4>
