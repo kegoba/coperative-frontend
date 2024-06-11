@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link} from 'react-router-dom';
 import {loginUser} from "../services/userServices"
 import {passwordValidation, 
         emailValidation,
@@ -74,7 +74,9 @@ const Login = () => {
             <input type="password" value={password} placeholder="Password" onChange={handlePassword}  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
         </div>
         
-        <button onClick={handleSubmit}  className="w-full text-white bg-[#2DC0AC] hover:bg-[#2DC0AC] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Login</button>
+        <button onClick={handleSubmit}  className="w-full text-white bg-[#092256] hover:bg-[#2DC0AC] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Login</button>
+        
+        Not Registered? <Link to={"/register"} className="text-bg-[#2DC0AC] hover:underline dark:text-bg-[#2DC0AC]">Register</Link>
         <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
         </div>
     </div>

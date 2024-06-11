@@ -35,7 +35,7 @@ const motivationItems = [
         <div className="container mx-auto px-4 text-center lg:text-left">
          
         <div className="flex items-center justify-center ">
-      <button className="w-[250px] text-white bg-[#2DC0AC] hover:bg-[#2DC0AC] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      <button className="w-[250px] text-white bg-[#092256] hover:bg-[#092256] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Why Choose Us?
       </button>
     </div>
@@ -55,8 +55,8 @@ const motivationItems = [
                 <div className="flex justify-center lg:justify-start">
                 <img
                   className="object-cover"
-                  src={item.imgPath}
-                  alt={item.imgAlt}
+                  src={item.iconPath}
+                  alt={item.iconPath}
                 />
                 </div>
                 <h2 className="text-lg text-primary-dark-blue py-4 lg:pt-9 lg:pb-6 lg:text-xl lg:font-bold">

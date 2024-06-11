@@ -90,21 +90,21 @@ const LoanRequest = () => {
     
   return (
   <>  
-    <h5 className="text-xl font-medium text-gray-900 dark:text-white"> Loan Caculator</h5>
-    <div className=" max-w-xl md:mx-[450px] mt-10 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-    <h5 class="text-xl font-bold mb-4">Payment Details</h5>
+    <h5 className=" font-medium text-gray-900 dark:text-white text-sm mt-10"> Loan Caculator</h5>
+    <div className=" max-w-xl md:mx-[450px] mt-5 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <h2 class="text-sm font-bold mb-4">Payment Details</h2>
         <div class="grid grid-cols-1 gap-4">
             <div class="grid grid-cols-3 gap-4">
-                <p class="text-gray-700">Monthly Interest:</p>
-                <p class="col-span-2 text-gray-700">{result?.totalInterest.toLocaleString()}</p>
+                <p class="text-gray-700 text-sm ">Monthly Interest:</p>
+                <p class="col-span-2 text-gray-700 text-sm ">{result?.totalInterest.toLocaleString()}</p>
             </div>
             <div class="grid grid-cols-3 gap-4">
-                <p class="text-gray-700">Monthly Payable:</p>
-                <p class="col-span-2 text-gray-700">{result?.monthlyReturn.toLocaleString()}</p>
+                <p class="text-gray-700 text-sm ">Monthly Payable:</p>
+                <p class="col-span-2 text-gray-700 text-sm ">{result?.monthlyReturn.toLocaleString()}</p>
             </div>
             <div class="grid grid-cols-3 gap-4">
-                <p class="text-gray-700">Total Payable:</p>
-                <p class="col-span-2 text-gray-700">{result?.totalAmountToBePaid.toLocaleString()}</p>
+                <p class="text-gray-700 text-sm ">Total Payable:</p>
+                <p class="col-span-2 text-gray-700 text-sm ">{result?.totalAmountToBePaid.toLocaleString()}</p>
             </div>
         </div>
     <div className="space-y-6 mt-10">
@@ -120,9 +120,9 @@ const LoanRequest = () => {
             </select>
         </div>
         
-        <button onClick={handleCaculate}  className="w-full text-white bg-[#2DC0AC] hover:bg-[#2DC0AC] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Caculate</button>
+        <button onClick={handleCaculate}  className="w-full text-white bg-[#092256] hover:bg-[#092256] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Caculate</button>
         <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-        <button onClick={handLoanRequest}  className="w-full text-white bg-[#2DC0AC] hover:[#2DC0AC] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Request</button>
+        <button onClick={handLoanRequest}  className="w-full text-white bg-[#092256] hover:bg-[#092256] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Request</button>
            
         </div>
     </div>

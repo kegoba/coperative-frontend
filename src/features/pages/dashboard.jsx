@@ -80,7 +80,7 @@ const Dashboard = () => {
           <button onClick={handleSidebarToggle}>
             {sidebarOpen ? <XMarkIcon className="w-5 text-gray-700" /> : <Bars3Icon className="w-5 text-gray-700" />}
           </button>
-          <h1 className="text-xl font-bold">Dashboard</h1>
+          
         </div>
 
         <div className="mt-10">

@@ -6,7 +6,7 @@ const TransactionHistory = ({ data }) => {
       <h2 className="text-xl font-bold mb-4">Transaction History</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-300">
-          <thead className="bg-[#2DC0AC] text-white">
+          <thead className="bg-[#092256] text-white rounded">
             <tr>
               <th className="py-2 px-4 border-b">Date</th>
               <th className="py-2 px-4 border-b">Amount</th>
