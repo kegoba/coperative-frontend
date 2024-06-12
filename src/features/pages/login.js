@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-
+import axios from 'axios';
 import { useNavigate, Link} from 'react-router-dom';
 import {loginUser} from "../services/userServices"
 import {passwordValidation, 
@@ -15,7 +15,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
  
 
-  const handleSubmit = async (event) => {
+  const handleSubmit1 = async (event) => {
     event.preventDefault();
     if (!passwordValidation(password)){
       NotificationManager.error("Password Must Be More Than Four Digits","Invalid Password" );
@@ -50,6 +50,29 @@ const Login = () => {
     }
   };
 
+
+  const handleSubmit = async (email, password) => {
+    try {
+      const response = await axios.post('https://coperative.onrender.com/api/v1/user/login', {
+        email,
+        password
+      });
+  
+      console.log('Login successful:', response.data);
+    } catch (error) {
+      if (error.response) {
+        // Server responded with a status other than 2xx
+        console.error('Server error:', error.response.data);
+      } else if (error.request) {
+        // Request was made but no response was received
+        console.error('Network error:', error.request);
+      } else {
+        // Something else happened in making the request
+        console.error('Error:', error.message);
+      }
+    }
+  };
+  
   
   const handleEmail = (e)=>{
     const emailValue = e.target.value
