@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-import axios from 'axios';
+
 import { useNavigate, Link} from 'react-router-dom';
 import {loginUser} from "../services/userServices"
 import {passwordValidation, 
@@ -15,64 +15,37 @@ const Login = () => {
   const [email, setEmail] = useState('');
  
 
-  const handleSubmit1 = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!passwordValidation(password)){
-      NotificationManager.error("Password Must Be More Than Four Digits","Invalid Password" );
-      return
+    if (!passwordValidation(password)) {
+      NotificationManager.error("Password Must Be More Than Four Digits", "Invalid Password");
+      return;
     }
-    if(!emailValidation(email)){
+    if (!emailValidation(email)) {
       NotificationManager.error("Please Enter Valid Email", "Invalid email");
-      return
+      return;
     }
-    const data ={
-      email, password
-    }
-    console.log(data)
-    try{
-      const resp  =   await loginUser(data)
-      console.log(resp.status)
-      if (resp.status===200){
-        console.log(resp.status, resp.data)
-      navigate("/")
-    }else{
 
-      setEmail("")
-      setPassword("")
-    }
-    
-    }catch(error){
-      setEmail("")
-      setPassword("")
-      console.log(error)
-      NotificationManager.error("wrong password or email", 1000);
+    const data = { email, password };
+    console.log(data);
 
-    }
-  };
-
-
-  const handleSubmit = async (email, password) => {
     try {
-      const response = await axios.post('https://coperative.onrender.com/api/v1/user/login', {
-        email,
-        password
-      });
-  
-      console.log('Login successful:', response.data);
-    } catch (error) {
-      if (error.response) {
-        // Server responded with a status other than 2xx
-        console.error('Server error:', error.response.data);
-      } else if (error.request) {
-        // Request was made but no response was received
-        console.error('Network error:', error.request);
+      const user = await loginUser(data);
+      if (user) {
+        console.log("Login successful:", user);
+        navigate("/");
       } else {
-        // Something else happened in making the request
-        console.error('Error:', error.message);
+        setEmail("");
+        setPassword("");
       }
+    } catch (error) {
+      setEmail("");
+      setPassword("");
+      NotificationManager.error("Wrong password or email", "Login failed", 1000);
     }
   };
-  
+
+
   
   const handleEmail = (e)=>{
     const emailValue = e.target.value

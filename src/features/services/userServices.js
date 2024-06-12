@@ -62,17 +62,23 @@ export const registerUser  = async (data)=> {
     
 }
 
-export const loginUser  = async (data)=> {
-  const response = await axiosInstance.post("/user/login",data);///user/login
-  if(response.status ===200){
-    localStorage.setItem("user", JSON.stringify(response.data.data))
-    localStorage.setItem("token", (response.data.data.token))
-    return response
-    
-   } 
-   return null
-    
-}
+
+
+
+export const loginUser = async (data) => {
+  try {
+    const response = await axiosInstance.post("/user/login", data);
+    if (response.status === 200) {
+      localStorage.setItem("user", JSON.stringify(response.data.data));
+      localStorage.setItem("token", response.data.data.token);
+      return response.data;
+    }
+  } catch (error) {
+    console.error("Login failed:", error);
+    throw error;
+  }
+  return null;
+};
 
 
 export const getAllUsers  = async (data)=> {
