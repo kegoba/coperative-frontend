@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import PageRouter from './router';
+
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"; // Ensure you have the correct icons
 
 const Navbar = () => {
@@ -52,7 +52,7 @@ const Navbar = () => {
           </div>
         </ul>
       </div>
-      <PageRouter />
+      
     </>
   );
 };
