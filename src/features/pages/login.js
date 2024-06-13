@@ -73,7 +73,10 @@ const Login = () => {
         <button onClick={handleSubmit}  className="w-full text-white bg-[#092256] hover:bg-[#2DC0AC] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Login</button>
         
         Not Registered? <Link to={"/register"} className="text-bg-[#2DC0AC] hover:underline dark:text-bg-[#2DC0AC]">Register</Link>
+        <div className="text-sm font-medium text-gray-500 dark:text-gray-300"> </div>
+        Forgoten Password? <Link to={"/forgot-password"} className="text-bg-[#2DC0AC] hover:underline dark:text-bg-[#2DC0AC]">Reset</Link>
         <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+          
         </div>
     </div>
     <NotificationContainer />

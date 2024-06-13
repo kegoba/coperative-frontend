@@ -63,6 +63,22 @@ export const registerUser  = async (data)=> {
 }
 
 
+export const forgotPasswordServices  = async (data)=> {
+  const response = await axiosInstance.post("/user/forgot-password",data);
+
+  return response
+    
+}
+
+
+
+export const resetPasswordServices  = async (data)=> {
+  const response = await axiosInstance.post("/user/reset-password",data); 
+
+  return response
+    
+}
+
 
 
 export const loginUser = async (data) => {

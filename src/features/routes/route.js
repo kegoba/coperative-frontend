@@ -14,6 +14,11 @@ import SuccessTransaction  from "../pages/success"
 import  Dashboard  from '../pages/dashboard'
 import Navbar from "../pages/navbar"
 import Footer from "../pages/footer"
+import ResetPassword from '../pages/reSetPassword'
+import ForgotPassword from '../pages/forgotPassword'
+
+
+
 
 const PageRouter = ()=>{
 
@@ -31,6 +36,8 @@ const PageRouter = ()=>{
         <Route  path="/fundwallet" element={<FundWallet/>} /> 
         <Route  path="/dashboard" element={<Dashboard/>} /> 
         <Route  path="/success/:trxref/:reference" element={<SuccessTransaction/>} />
+        <Route  path="/reset-password/:token" element={<ResetPassword/>} /> 
+        <Route  path="/forgot-password" element={<ForgotPassword/>} />
     </Routes>
     <Footer/>
     </BrowserRouter>
