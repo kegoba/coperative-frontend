@@ -6,7 +6,7 @@ import { NotificationContainer, NotificationManager } from 'react-notifications'
 import 'react-notifications/lib/notifications.css';
 
 import {registerUser} from '../services/userServices';
-
+import SpinningButton from "../utilities/spinnerButton"
 import {passwordValidation, 
     emailValidation,
    inputValidation ,
@@ -22,7 +22,8 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-
+  const [isLoading, setIsLoading] = useState(false)
+  
  
 
   const handleSubmit = async (e) => {
@@ -46,8 +47,12 @@ const Register = () => {
     const data ={
       email, password, name, phone
     }
-  
+    
+    
+   try{
+    setIsLoading(true)
     const resp = await registerUser(data)
+    await new Promise((resolve) => setTimeout(resolve, 2000));
       if (resp.status=== 200){
         navigate("/login")
         console.log("saves")
@@ -57,7 +62,12 @@ const Register = () => {
         setPassword("")
 
       }
+
+   }catch(error){
+     console.log(error)
+   }
     
+   setIsLoading(false);
   };
 
   const handleName = (e)=>{
@@ -102,7 +112,8 @@ const Register = () => {
             <input type="password" placeholder="Password" onChange={handlePassword} value={password}  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
         </div>
         
-        <button onClick={handleSubmit}  className="w-full text-white bg-[#092256] hover:bg-[] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Create Acount</button>
+        <SpinningButton   isLoading={isLoading} onClick={handleSubmit} buttonName={"Register"}  classNames="w-full  inset-0 flex items-center justify-center text-white bg-[#092256]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"/> 
+        
         <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
             Registered? <Link to={"/login"} className="text-bg-[#2DC0AC] hover:underline dark:text-bg-[#2DC0AC]">Login</Link>
         </div>

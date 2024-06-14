@@ -9,10 +9,12 @@ import {passwordValidation,
         emailValidation,
       } from "../services/validationService"
 
+import SpinningButton from "../utilities/spinnerButton"
 const Login = () => {
   const navigate = useNavigate()
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false)
  
 
   const handleSubmit = async (event) => {
@@ -27,10 +29,10 @@ const Login = () => {
     }
 
     const data = { email, password };
-    console.log(data);
-
+    setIsLoading(true);
     try {
       const user = await loginUser(data);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       if (user) {
         console.log("Login successful:", user);
         navigate("/");
@@ -43,6 +45,7 @@ const Login = () => {
       setPassword("");
       NotificationManager.error("Wrong password or email", "Login failed", 1000);
     }
+    setIsLoading(false);
   };
 
 
@@ -70,7 +73,7 @@ const Login = () => {
             <input type="password" value={password} placeholder="Password" onChange={handlePassword}  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
         </div>
         
-        <button onClick={handleSubmit}  className="w-full text-white bg-[#092256] hover:bg-[#2DC0AC] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Login</button>
+        <SpinningButton   isLoading={isLoading} onClick={handleSubmit} buttonName={"Login"}  classNames="w-full  inset-0 flex items-center justify-center text-white bg-[#092256]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"/> 
         
         Not Registered? <Link to={"/register"} className="text-bg-[#2DC0AC] hover:underline dark:text-bg-[#2DC0AC]">Register</Link>
         <div className="text-sm font-medium text-gray-500 dark:text-gray-300"> </div>
