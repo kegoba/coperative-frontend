@@ -1,7 +1,4 @@
 import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
 
 const articles = [
   {
@@ -31,36 +28,6 @@ const articles = [
 ];
 
 const Blog = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    responsive: [
-      {
-        breakpoint: 1024, // screen width of 1024px or less
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 768, // screen width of 768px or less
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 640, // screen width of 640px or less
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
-
   return (
     <section className="py-14 lg:py-24">
       <div className="container mx-auto px-4">
@@ -69,7 +36,7 @@ const Blog = () => {
             What We Offer?
           </button>
         </div>
-        <Slider {...settings} className="mt-20">
+        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-20">
           {articles.map((article, index) => (
             <div key={index} className="px-4">
               <article className="bg-white shadow-md rounded overflow-hidden">
@@ -91,7 +58,7 @@ const Blog = () => {
               </article>
             </div>
           ))}
-        </Slider>
+        </div>
       </div>
     </section>
   );

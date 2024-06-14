@@ -6,7 +6,6 @@ import 'react-notifications/lib/notifications.css';
 import { useNavigate, useParams} from 'react-router-dom';
 import {resetPasswordServices} from "../services/userServices"
 import {passwordValidation, 
-        emailValidation,
       } from "../services/validationService"
 
 
@@ -36,7 +35,7 @@ const ResetPassword = () => {
       }
 
     const data = { newPassword, token };
-    console.log(data);
+  
 
     try {
       const user = await resetPasswordServices(data);
@@ -57,14 +56,13 @@ const ResetPassword = () => {
 
   
   const handleConfirmNewPassword = (e)=>{
-    console.log(e.target.value)
-    
+      
     setConfirmNewPassword(e.target.value)
 
     
   }
   const handleNewPassword = (e)=>{
-    console.log(e.target.value)
+  
     setNewPassword(e.target.value)
     
   }

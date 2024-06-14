@@ -2,7 +2,7 @@
 import './App.css';
 import  Navbar from './features/pages/navbar'
 import  Footer from './features/pages/footer'
-import PageRouter from './features/pages/router';
+
 import Home from "./features/pages/home"
 
 

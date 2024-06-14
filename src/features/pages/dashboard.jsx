@@ -54,35 +54,8 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex h-screen">
-      {/* Sidebar */}
-      <div className={`lg:w-1/5 ${sidebarOpen ? 'block' : 'hidden'} fixed inset-0 z-50 bg-white lg:bg-transparent lg:relative`}>
-        <Sidebar className="h-full lg:h-auto">
-          <Menu>
-            <MenuItem>Hello, {user && user.name}</MenuItem>
-            <SubMenu label="User Profile">
-              <MenuItem>UserInfo</MenuItem>
-            </SubMenu>
-            <MenuItem>Wallet Balance: {savings.balance}</MenuItem>
-            <MenuItem>Interest Earned: {cashOut}</MenuItem>
-            <MenuItem>Settings</MenuItem>
-            <SubMenu label="Loan">
-              <MenuItem>Request</MenuItem>
-              <MenuItem>Cancel</MenuItem>
-            </SubMenu>
-          </Menu>
-        </Sidebar>
-      </div>
-
-      {/* Main content */}
-      <div className="flex-1 p-4 lg:ml-64">
-        <div className="flex justify-between items-center lg:hidden">
-          <button onClick={handleSidebarToggle}>
-            {sidebarOpen ? <XMarkIcon className="w-5 text-gray-700" /> : <Bars3Icon className="w-5 text-gray-700" />}
-          </button>
-          
-        </div>
-
+    <div className="">
+    
         <div className="mt-10">
           <TransactionHistory data={transaction} />
         </div>
@@ -90,7 +63,7 @@ const Dashboard = () => {
           <LoanHistory data={loans} />
         </div>
       </div>
-    </div>
+
   );
 };
 
