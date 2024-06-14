@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { useNavigate } from 'react-router-dom';
 import TransactionHistory from './transactionHistory';
 import LoanHistory from './loanHistory';
+
 import { getDashboardDetails, interestEarned } from '../services/userServices';
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
@@ -49,17 +49,16 @@ const Dashboard = () => {
 
   }, [navigate]);
 
-  const handleSidebarToggle = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
+ 
 
   return (
-    <div className="">
+    <div className="sm:w md:w">
     
-        <div className="mt-10">
+        <div className=" ">
           <TransactionHistory data={transaction} />
         </div>
-        <div className="mt-20">
+     
+        <div className="">
           <LoanHistory data={loans} />
         </div>
       </div>
