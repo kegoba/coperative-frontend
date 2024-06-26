@@ -22,11 +22,7 @@ const Navbar = () => {
             <Link to="/" className='text-3xl font-bold mr-4 sm:text-4xl'>
               <img src="/images/applogo.png" className='h-20 w-20' alt="Logo" />
             </Link>
-            <ul className='hidden md:flex'>
-              <li><Link className='p-4' to="/dashboard">Dashboard</Link></li>
-              <li><Link className='p-4' to="/loanrequest">Loan Request</Link></li>
-              <li><Link className='p-4' to="/fundwallet">Fund Wallet</Link></li>
-            </ul>
+            
           </div>
           <div className='hidden md:flex pr-4'>
             <Link to="/login" className='px-8 py-3'>
@@ -43,9 +39,6 @@ const Navbar = () => {
 
         <ul className={!nav ? 'hidden' : 'absolute bg-[#092256] text-white w-[200px] px-8'}>
           <li className='text-left'><Link className='block py-4' onClick={handleClose} to="/">Home</Link></li>
-          <li className='text-left'><Link className='block py-4' onClick={handleClose} to="/dashboard">Dashboard</Link></li>
-          <li className='text-left'><Link className='block py-4' onClick={handleClose} to="/loanrequest">Loan Request</Link></li>
-          <li className='text-left'><Link className='block py-4' onClick={handleClose} to="/fundwallet">Fund Wallet</Link></li>
           <div className='flex flex-col my-4'>
             <Link to="/login" className='bg-transparent border border-white text-white px-8 py-3 mb-4'>Login</Link>
             <Link to="/register" className='px-8 py-3 bg-white text-[#092256]'>Register</Link>

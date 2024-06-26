@@ -4,14 +4,18 @@ import { NotificationContainer, NotificationManager } from 'react-notifications'
 import 'react-notifications/lib/notifications.css';
 
 import { useNavigate, Link} from 'react-router-dom';
-import {forgotPasswordServices} from "../services/userServices"
+import {forgotPasswordServices} from "../apiServices/userServices"
 import { 
         emailValidation,
-      } from "../services/validationService"
+      } from "../apiServices/validationService"
 
+
+import SpinningButton from "../utilities/spinnerButton"
+      
 const ForgotPassword = () => {
   const navigate = useNavigate()
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false)
 
  
 
@@ -23,22 +27,26 @@ const ForgotPassword = () => {
     }
     
     const data = { email };
-    console.log(data);
-
     try {
+      setIsLoading(true)
       const user = await forgotPasswordServices(data);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       if (user) {
-        console.log("Email Sent  successful:", user);
-        navigate("/login");
+        NotificationManager.success("Reset Link Sent to Your Mail");
+        setEmail('');
+        
+        // Adding a slight delay before navigating
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
       } else {
-     
-        setEmail("");
+        setEmail('');
       }
     } catch (error) {
-         
-        setEmail("");
-      NotificationManager.error( "invail Email");
+      setEmail('');
+      NotificationManager.error(error.response.data.message || "An error occurred");
     }
+    setIsLoading(false)
   };
 
 
@@ -59,11 +67,7 @@ const ForgotPassword = () => {
         <div>
             <input type="email"  placeholder="Email"   onChange={handleEmail}  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
         </div>
-        
-        
-        <button onClick={handleSubmit}  className="w-full text-white bg-[#092256] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Confirm Email </button>
-        
-       
+        <SpinningButton   isLoading={isLoading} onClick={handleSubmit} buttonName={"Confirm Email"}  classNames="w-full  inset-0 flex items-center justify-center text-white bg-[#092256]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"/> 
     </div>
     <NotificationContainer />
 </div>

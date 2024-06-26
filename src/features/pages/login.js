@@ -2,19 +2,24 @@
 import React, { useState } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-
+import { useDispatch } from 'react-redux';
+import { login } from '../reduxServices/actions'
 import { useNavigate, Link} from 'react-router-dom';
-import {loginUser} from "../services/userServices"
+import {loginUser} from "../apiServices/userServices"
 import {passwordValidation, 
         emailValidation,
-      } from "../services/validationService"
+      } from "../apiServices/validationService"
 
 import SpinningButton from "../utilities/spinnerButton"
+
 const Login = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch();
+
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false)
+  
  
 
   const handleSubmit = async (event) => {
@@ -34,7 +39,7 @@ const Login = () => {
       const user = await loginUser(data);
       await new Promise((resolve) => setTimeout(resolve, 2000));
       if (user) {
-        console.log("Login successful:", user);
+        dispatch(login(user));
         navigate("/");
       } else {
         setEmail("");
@@ -43,7 +48,7 @@ const Login = () => {
     } catch (error) {
       setEmail("");
       setPassword("");
-      NotificationManager.error("Wrong password or email", "Login failed", 1000);
+      NotificationManager.error( error.response.data.message);
     }
     setIsLoading(false);
   };

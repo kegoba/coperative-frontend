@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import {getSingleConsulation} from "../services/userServices"
+
 import { useNavigate } from 'react-router-dom';
 
 

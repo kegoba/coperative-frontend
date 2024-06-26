@@ -5,13 +5,14 @@ import { useNavigate } from "react-router-dom"
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 
-import {registerUser} from '../services/userServices';
+import {registerUser} from '../apiServices/userServices';
 import SpinningButton from "../utilities/spinnerButton"
+
 import {passwordValidation, 
     emailValidation,
    inputValidation ,
    phoneValidation,
-} from "../services/validationService"
+} from "../apiServices/validationService"
 
 
 
@@ -64,7 +65,8 @@ const Register = () => {
       }
 
    }catch(error){
-     console.log(error)
+    console.log(error.response.data)
+    NotificationManager.error( error.response.data.message);
    }
     
    setIsLoading(false);

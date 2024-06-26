@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getAllUsers } from '../services/userServices';
+import { getAllUserServices } from '../apiServices/userServices';
 import { Link } from 'react-router-dom';
 
 const ViewAllUsers = () => {
@@ -7,7 +7,7 @@ const ViewAllUsers = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    getAllUsers()
+    getAllUserServices()
       .then((response) => {
         if (response) {
           setUsers(response.data);

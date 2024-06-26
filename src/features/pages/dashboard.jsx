@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import TransactionHistory from './transactionHistory';
 import LoanHistory from './loanHistory';
-
-import { getDashboardDetails, interestEarned } from '../services/userServices';
+import {Card, WalletIcon,InterestIcon} from "../utilities/reuseAbles"
+import { getDashboardDetails, interestEarned } from '../apiServices/userServices';
 
 
 const Dashboard = () => {
@@ -15,12 +16,12 @@ const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
+
+
   useEffect(() => {
     const checkUserLogin = localStorage.getItem("user")
     const user = JSON.parse(checkUserLogin)
     if (user){
-      
-   
     getDashboardDetails()
       .then((response) => {
         if (response.status === 200) {
@@ -49,10 +50,21 @@ const Dashboard = () => {
 
   }, [navigate]);
 
- 
-
   return (
-    <div className="sm:w md:w">
+    <div className=" container">
+      
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:ml-40">
+        <Card className="w-1"
+            title="Wallet Balance" 
+            value={savings.balance.toFixed(2)} 
+            icon={<WalletIcon />} 
+        />
+        <Card 
+            title="Interest Earned" 
+            value={cashOut.toFixed(2)} 
+            icon={<InterestIcon />} 
+        />
+    </div>
     
         <div className=" ">
           <TransactionHistory data={transaction} />

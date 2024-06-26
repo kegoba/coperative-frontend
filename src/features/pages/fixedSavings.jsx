@@ -1,7 +1,8 @@
+
 import React, { useState } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {calculate, loanRequestService} from "../apiServices/userServices"
 import {amountValidation, 
@@ -9,18 +10,19 @@ import {amountValidation,
       } from "../apiServices/validationService"
 
 import SpinningButton from "../utilities/spinnerButton"
-
-import {Card, WalletIcon,InterestIcon} from "../utilities/reuseAbles"
-    
+import {Card,InterestIcon} from "../utilities/reuseAbles"
 
 
 
-const LoanRequest = () => {
+const FixedSaving = () => {
   const navigate = useNavigate()
   const [duration, setDuration] = useState('');
-  const [amountBorrowed, setAmountBorrowed] = useState('');
+  const [amount , setAmount ] = useState('');
   const [result, setResult] = useState()
   const [isLoading, setIsLoading] = useState(false)
+  const user = useSelector((state)=>state.auth.user)
+
+
   React.useEffect(() => {
     const checkUserLogin = localStorage.getItem("user")
     const user = JSON.parse(checkUserLogin)
@@ -32,9 +34,9 @@ const LoanRequest = () => {
 
 
 
-  
+ 
   const handleAmount = (e)=>{
-    setAmountBorrowed(parseInt(e.target.value))
+    setAmount(parseInt(e.target.value))
 
     
   }
@@ -52,7 +54,7 @@ const LoanRequest = () => {
 
 
   const handleCaculate = async (event) => {
-    if (!amountValidation(amountBorrowed)){
+    if (!amountValidation(amount )){
       NotificationManager.error("Invalid Amount" );
       return
     }
@@ -60,15 +62,20 @@ const LoanRequest = () => {
         NotificationManager.error("Select Duration" );
         return
       }
-    const response = calculate(amountBorrowed, duration)
+    const response = calculate(amount, duration)
     setResult(response)
   };
 
  
   const handLoanRequest = async ()=>{
+  const balance = user?.data?.balance
+    if (amount>=balance ){
+        NotificationManager.error("Your Wallet is Not Funded" );
+        return
+      }
     //const loanReference = String(Math.random() * (10 - 9) + "az");
-    
-    const data ={ amountBorrowed,duration , ...result}
+    console.log(user?.data?.balance, "user from redux")
+    const data ={ amount ,duration , ...result}
     console.log(data)
     try{
       setIsLoading(true)
@@ -78,13 +85,12 @@ const LoanRequest = () => {
         setIsLoading(false)
       navigate("/")
     }else{
-
       setDuration("")
-      setAmountBorrowed("")
+      setAmount ("")
     }
     
     }catch(error){
-      setAmountBorrowed("")
+      setAmount ("")
       setDuration("")
       
       NotificationManager.error( error.response.data.message);
@@ -97,14 +103,9 @@ const LoanRequest = () => {
   }
     
   return (
-  < div className='container'>  
-   <h2 class="text-sm font-bold mb-4">Payment Details</h2>
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:ml-40">
-        <Card className="w-1"
-            title="Monthly Payable:" 
-            value={result?.monthlyReturn.toLocaleString()} 
-            icon={<WalletIcon />} 
-        />
+  <>  
+    <h5 className=" font-medium text-gray-900 dark:text-white text-center text-sm mt-10"> Fixed Savings Investment</h5>
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:ml-40">
         <Card 
             title="Monthly Interest" 
             value={result?.totalInterest.toLocaleString()}
@@ -117,9 +118,10 @@ const LoanRequest = () => {
         />
     </div>
     
-    <h5 className=" font-medium text-gray-900 dark:text-white text-center text-sm mt-10"> Please Fill Below details</h5>
-    <div className="  md:mx-[400px] mt-5 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
     
+    <div className="  md:mx-[400px] mt-5 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+  
+        
     <div className="space-y-6 mt-10">
         <div>
             <input placeholder="Amount"   onChange={handleAmount}  type="amount"className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
@@ -136,15 +138,15 @@ const LoanRequest = () => {
         <button onClick={handleCaculate}  className="w-full text-white bg-[#092256] hover:bg-[#092256] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Caculate</button>
        
         <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-        <SpinningButton   isLoading={isLoading} onClick={handLoanRequest} buttonName={"Request"}  classNames="w-full  inset-0 flex items-center justify-center text-white bg-[#092256]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"/> 
+        <SpinningButton   isLoading={isLoading} onClick={handLoanRequest} buttonName={"Fixed saving"}  classNames="w-full  inset-0 flex items-center justify-center text-white bg-[#092256]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"/> 
      
         </div>
     </div>
     <NotificationContainer />
 </div>
-    </div>
+    </>
   );
 };
 
-export default LoanRequest;
+export default FixedSaving;
 

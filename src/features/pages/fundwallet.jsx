@@ -4,10 +4,10 @@ import { NotificationContainer, NotificationManager } from 'react-notifications'
 import 'react-notifications/lib/notifications.css';
 
 import { useNavigate } from 'react-router-dom';
-import {FundWalletservices} from "../services/userServices"
+import {FundWalletservices} from "../apiServices/userServices"
 import {
     amountValidation,
-      } from "../services/validationService"
+      } from "../apiServices/validationService"
 
 const FundWallet = () => {
   const navigate = useNavigate()

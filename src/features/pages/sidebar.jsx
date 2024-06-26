@@ -1,11 +1,25 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
+import { logout } from '../reduxServices/actions';
+import {useDispatch} from "react-redux"
+
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+
+
+
+  const handleLogout = () => {
+    dispatch(logout());
+
+
   };
 
   return (
@@ -22,10 +36,10 @@ const Sidebar = () => {
       <div
         className={`fixed inset-y-0 left-0 w-64 bg-gray-100 transition-transform transform ${
           isOpen ? 'translate-x-0 z-30' : '-translate-x-full'
-        }`}
+        } overflow-y-auto`}
       >
         <div className="flex items-center justify-between h-16 bg-[#092256] text-white p-4">
-          <span > User Dashboard</span>
+          <span>User Dashboard</span>
           <button onClick={toggleSidebar}>
             ✕
           </button>
@@ -36,20 +50,65 @@ const Sidebar = () => {
               <span>Dashboard</span>
             </Link>
           </li>
+          <li className="flex h-20 items-center p-4 hover:bg-gray-200">
+            <div className="dropdown">
+              <div tabIndex={0} role="button" className="flex items-center">
+                Loan
+                <img className='ml-[125px]  h-5 w-5' src='/icons/icon-arrow-right.svg' alt='Arrow down' />
+              </div>
+              <ul tabIndex={0} className="dropdown-content z-[1] p-4 shadow bg-base-100 w-52">
+                <li className='p-4'><Link to={"/loanrequest"} onClick={toggleSidebar}>Loan Request</Link></li>
+                <li className='p-4' > <Link to={"/loanhistory"}  onClick={toggleSidebar}>Cancel Loan </Link></li>
+                <li className='p-4' > <Link to={"/loanhistory"}  onClick={toggleSidebar}>Liquidate Loan </Link></li>
+                
+              </ul>
+            </div>
+          </li>
           <li className="flex items-center p-4 hover:bg-gray-200">
-            <Link to="/storage" onClick={toggleSidebar}>
-              <span>Storage</span>
+            <div className="dropdown">
+              <div tabIndex={0} role="button" className="flex items-center">
+                Savings
+                <img className='ml-[110px] h-5 w-5' src='/icons/icon-arrow-right.svg' alt='Arrow down' />
+              </div>
+              <ul tabIndex={0} className="dropdown-content z-[1] p-4 shadow bg-base-100 w-52">
+                <li className='p-4' > <Link to={"/fixedsaving"} onClick={toggleSidebar}>Fixed Saving </Link></li>
+                <li className='p-4' onClick={toggleSidebar}>Liquidate Savings</li>
+              </ul>
+            </div>
+          </li>
+          <li className="flex items-center p-4 hover:bg-gray-200">
+            <div className="dropdown">
+              <div tabIndex={0} role="button" className="flex items-center">
+                Fund Transfer
+                <img className='ml-[70px] h-5 w-5' src='/icons/icon-arrow-right.svg' alt='Arrow down' />
+              </div>
+              <ul tabIndex={0} className="dropdown-content z-[1] p-4 shadow bg-base-100 w-52">
+                <li className='p-4' onClick={toggleSidebar}><Link to={"/wallettransfer"}>Inter-Transfer</Link></li>
+                <li className='p-4' onClick={toggleSidebar}>Intra-Transfer</li>
+              </ul>
+            </div>
+          </li>
+          <li className="flex items-center p-4 hover:bg-gray-200">
+            <Link to="/fundwallet" onClick={toggleSidebar}>
+              <span>Fund Wallet</span>
             </Link>
           </li>
           <li className="flex items-center p-4 hover:bg-gray-200">
-            <Link to="/functions" onClick={toggleSidebar}>
-              <span>Functions</span>
-            </Link>
+            <div className="dropdown">
+              <div tabIndex={0} role="button" className="flex items-center">
+                Settings
+                <img className='ml-[110px] h-5 w-5' src='/icons/icon-arrow-right.svg' alt='Arrow down' />
+              </div>
+              <ul tabIndex={0} className="dropdown-content z-[1] p-4 shadow bg-base-100 w-52">
+                <li className='p-4' onClick={toggleSidebar}><Link to={"/changePassword"}>Change Password</Link></li>
+                <li className='p-4' onClick={toggleSidebar}>Update Profile</li>
+              </ul>
+            </div>
           </li>
-          <li className="flex items-center p-4 hover:bg-gray-200">
-            <Link to="/realtime" onClick={toggleSidebar}>
-              <span>Realtime</span>
-            </Link>
+          <li className="flex items-center p-4 hover:bg-gray-200 " onClick={handleLogout}>
+             
+              <span>Logout</span>
+           
           </li>
         </ul>
       </div>
