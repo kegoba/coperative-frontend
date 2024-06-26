@@ -49,6 +49,7 @@ const Login = () => {
       setEmail("");
       setPassword("");
       NotificationManager.error( error.response.data.message);
+      setIsLoading(false);
     }
     setIsLoading(false);
   };
