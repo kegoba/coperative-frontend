@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SpinnerIcon = () => (
+export const SpinnerIcon = () => (
   <svg
     className="animate-spin h-5 w-5 text-white text-center"
     xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@ const SpinnerIcon = () => (
   </svg>
 );
 
-export default SpinnerIcon
+
 
 
 

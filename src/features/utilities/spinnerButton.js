@@ -1,6 +1,6 @@
 import React from "react"
 
-import SpinnerIcon from "./spinnerIcons"
+import {SpinnerIcon} from "./spinnerIcons"
 
 
 
