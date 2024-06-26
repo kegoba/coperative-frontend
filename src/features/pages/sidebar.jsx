@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate} from 'react-router-dom';
 import { logout } from '../reduxServices/actions';
 import {useDispatch} from "react-redux"
-import {ArrowRight} from "../utilities/reuseAbles"
+import {ArrowDownIcon} from "../utilities/reuseAbles"
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,7 +54,7 @@ const Sidebar = () => {
             <div className="dropdown">
               <div tabIndex={0} role="button" className="flex items-center">
                 Loan
-                <img className='ml-[125px]  h-5 w-5' src={`${process.env.PUBLIC_URL}/icons/icon-arrow-right.svg`} alt='Arrow down' />
+                <ArrowDownIcon className="ml-[145px] h-5 w-5 text-gray-500" />
               </div>
               <ul tabIndex={0} className="dropdown-content z-[1] p-4 shadow bg-base-100 w-52">
                 <li className='p-4'><Link to={"/loanrequest"} onClick={toggleSidebar}>Loan Request</Link></li>
@@ -68,7 +68,7 @@ const Sidebar = () => {
             <div className="dropdown">
               <div tabIndex={0} role="button" className="flex items-center">
                 Savings
-                <img className='ml-[110px] h-5 w-5' src={`${process.env.PUBLIC_URL}/icons/icon-arrow-right.svg`} alt='Arrow down' />
+                <ArrowDownIcon className="ml-[125px] h-5 w-5 text-gray-500" />
               </div>
               <ul tabIndex={0} className="dropdown-content z-[1] p-4 shadow bg-base-100 w-52">
                 <li className='p-4' > <Link to={"/fixedsaving"} onClick={toggleSidebar}>Fixed Saving </Link></li>
@@ -80,7 +80,7 @@ const Sidebar = () => {
             <div className="dropdown">
               <div tabIndex={0} role="button" className="flex items-center">
                 Fund Transfer
-                <img className='ml-[70px] h-5 w-5' src={`${process.env.PUBLIC_URL}/icons/icon-arrow-right.svg`} alt='Arrow down' />
+                <ArrowDownIcon className="ml-[85px] h-5 w-5 text-gray-500" />
               </div>
               <ul tabIndex={0} className="dropdown-content z-[1] p-4 shadow bg-base-100 w-52">
                 <li className='p-4' onClick={toggleSidebar}><Link to={"/wallettransfer"}>Inter-Transfer</Link></li>
@@ -97,7 +97,7 @@ const Sidebar = () => {
             <div className="dropdown">
               <div tabIndex={0} role="button" className="flex items-center">
                 Settings
-                <img className='ml-[110px] h-5 w-5' src={`${process.env.PUBLIC_URL}/icons/icon-arrow-right.svg`} alt='Arrow down' />
+                <ArrowDownIcon className="ml-[120px] h-5 w-5 text-gray-500" />
               </div>
               <ul tabIndex={0} className="dropdown-content z-[1] p-4 shadow bg-base-100 w-52">
                 <li className='p-4' onClick={toggleSidebar}><Link to={"/changePassword"}>Change Password</Link></li>
