@@ -72,24 +72,30 @@ const ThreeDottedAction = ({ actions }) => {
 
 
 
-export const Table = ({ columns, data, onApprove, onReject, actiontype }) => {
+
+
+export const Table = ({ columns, data, onApprove, onReject, actionType }) => {
     const actions = (item) => [
         {
-            label: Object.values(actiontype)[0],
+            label: Object.values(actionType)[0],
             onClick: () => onApprove(item),
         },
         {
-            label: Object.values(actiontype)[1],
+            label: Object.values(actionType)[1],
             onClick: () => onReject(item),
         },
         // Add more actions here if needed
     ];
 
+    if (!Array.isArray(data)) {
+        return <div>No data available.</div>;
+    }
+
     return (
         <table className="min-w-full bg-white">
             <thead>
                 <tr>
-                    {columns.map((col, index) => (
+                    {columns?.map((col, index) => (
                         <th key={index} className="py-2 px-4">
                             {col.header}
                         </th>
@@ -100,15 +106,13 @@ export const Table = ({ columns, data, onApprove, onReject, actiontype }) => {
             <tbody>
                 {data.map((item, rowIndex) => (
                     <tr key={rowIndex} className="border-b">
-                        {columns.map((col, colIndex) => (
+                        {columns?.map((col, colIndex) => (
                             <td key={colIndex} className="py-2 px-4">
                                 {item[col.accessor]}
                             </td>
                         ))}
                         <td className="py-2 px-4 text-right">
-                            <ThreeDottedAction
-                                actions={actions(item)}
-                            />
+                            <ThreeDottedAction actions={actions(item)} />
                         </td>
                     </tr>
                 ))}

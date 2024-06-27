@@ -25,14 +25,14 @@ const Dashboard = () => {
     getDashboardDetails()
       .then((response) => {
         if (response.status === 200) {
-          const savingsData = response.data.savings[0];
+          const savingsData = response.data.wallet[0];
           const { date, interest, balance } = savingsData;
 
           const depositedDate = new Date(date).toISOString().slice(0, 10);
           const calculatedDate = new Date().toISOString().slice(0, 10);
 
           const cash = interestEarned(balance, depositedDate, calculatedDate);
-          console.log(response.data.transaction, "Transaction Data");
+         
 
           setTransaction(response.data.transaction);
           setCashOut(cash);

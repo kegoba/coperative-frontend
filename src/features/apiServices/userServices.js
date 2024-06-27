@@ -34,7 +34,7 @@ export const getAllUserServices  = async ()=> {
     
 }
 
-export const getLoanRequestServices  = async ()=> {
+export const getAllLoanRequestServices  = async ()=> {
   const response = await axiosInstance.get("/admin/getloanrequest");
 
   return response.data
@@ -46,11 +46,23 @@ export const approveLoanRequestServices  = async (data)=> {
   return response.data
     
 }
+//loanrequest
 
+export const cancelloanRequestService  = async (loanId)=> {
+  const response = await axiosInstance.post('/loan/cancel-loanrequest/'+loanId);
 
+  return response
 
+}
+
+export const getloanRequestService  = async ()=> {
+  const response = await axiosInstance.get('/loan/getloanrequest');
+
+  return response
+
+}
 export const loanRequestService  = async (data)=> {
-  const response = await axiosInstance.post("/user/loanrequest",data);
+  const response = await axiosInstance.post("/loan/loanrequest",data);
 
   return response
     
