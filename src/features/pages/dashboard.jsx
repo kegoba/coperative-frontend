@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import TransactionHistory from './transactionHistory';
 import LoanHistory from './loanHistory';
-import {Card, WalletIcon,InterestIcon} from "../utilities/reuseAbles"
-import { getDashboardDetails, interestEarned } from '../apiServices/userServices';
+import {Card, WalletIcon,InterestIcon,interestEarned} from "../utilities/reuseAbles"
+import { getDashboardDetails } from '../apiServices/userServices';
 
 
 const Dashboard = () => {

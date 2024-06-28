@@ -2,31 +2,6 @@
 import axiosInstance from "./axiosConfig"
 
 
-export const  calculate = (amount, duration)=>{
-  
-  const totalInterest = (amount * (5 / 100) * duration);
-  const totalAmountToBePaid = amount + totalInterest
-  const monthlyReturn = totalAmountToBePaid/duration
-  //const monthlyInterestRate = interestRate / 100 / numberOfMonths;  //Math.round
-  return {totalInterest : parseInt(totalInterest),
-        totalAmountToBePaid : parseInt(totalAmountToBePaid), 
-        monthlyReturn:parseInt(monthlyReturn) };
-} 
-
-export const interestEarned = (principal, despositedDate,calculatedDate) => {
-  const startDate = new Date(despositedDate);
-  const endDate = new Date(calculatedDate);
-  // Calculate time difference in milliseconds
-  const timeDifference = endDate.getTime() - startDate.getTime();
-  
-  // Convert time difference to days
-  const timeInDays = timeDifference / (1000 * 60 * 60 * 24);
-  const interestRate = 4 / 100; // Convert percentage to decimal
-  const interest = principal * interestRate * (timeInDays / 365); // Assuming 365 days in a year
-  return interest;
-};
-
-
 export const getAllUserServices  = async ()=> {
   const response = await axiosInstance.get("/admin/getalluser");
 

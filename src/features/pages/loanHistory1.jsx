@@ -51,10 +51,7 @@ const LoanHistory1 = () => {
     setLoading(true)
     const response = await cancelloanRequestService(item._id)
     if(response){
-
-        
-       
-        
+      
         setLoading(false)
         setTimeout(() => {
             NotificationManager.success(response.data.data);

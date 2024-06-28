@@ -3,14 +3,14 @@ import { NotificationContainer, NotificationManager } from 'react-notifications'
 import 'react-notifications/lib/notifications.css';
 
 import { useNavigate } from 'react-router-dom';
-import {calculate, loanRequestService} from "../apiServices/userServices"
+import {loanRequestService} from "../apiServices/userServices"
 import {amountValidation, 
         durationValidation,
       } from "../apiServices/validationService"
 
 import SpinningButton from "../utilities/spinnerButton"
 
-import {Card, WalletIcon,InterestIcon} from "../utilities/reuseAbles"
+import {Card, calculate, WalletIcon,InterestIcon} from "../utilities/reuseAbles"
     
 
 
@@ -98,7 +98,6 @@ const LoanRequest = () => {
     
   return (
   < div className='container'>  
-   <h2 class="text-sm font-bold mb-4">Payment Details</h2>
 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:ml-40">
         <Card className="w-1"
             title="Monthly Payable:" 

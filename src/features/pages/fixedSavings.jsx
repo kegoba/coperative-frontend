@@ -4,13 +4,13 @@ import { NotificationContainer, NotificationManager } from 'react-notifications'
 import 'react-notifications/lib/notifications.css';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {calculate, fixedSaving} from "../apiServices/userServices"
+import { fixedSaving} from "../apiServices/userServices"
 import {amountValidation, 
         durationValidation,
       } from "../apiServices/validationService"
 
 import SpinningButton from "../utilities/spinnerButton"
-import {Card,InterestIcon} from "../utilities/reuseAbles"
+import {Card,InterestIcon,calculate} from "../utilities/reuseAbles"
 
 
 
