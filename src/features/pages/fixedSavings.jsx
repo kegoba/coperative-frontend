@@ -4,7 +4,7 @@ import { NotificationContainer, NotificationManager } from 'react-notifications'
 import 'react-notifications/lib/notifications.css';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {calculate, loanRequestService} from "../apiServices/userServices"
+import {calculate, fixedSaving} from "../apiServices/userServices"
 import {amountValidation, 
         durationValidation,
       } from "../apiServices/validationService"
@@ -67,22 +67,23 @@ const FixedSaving = () => {
   };
 
  
-  const handLoanRequest = async ()=>{
+  const handleSumit = async ()=>{
   const balance = user?.data?.balance
-    if (amount>=balance ){
+    if (balance < amount ){
         NotificationManager.error("Your Wallet is Not Funded" );
-        return
+        
       }
     //const loanReference = String(Math.random() * (10 - 9) + "az");
-    console.log(user?.data?.balance, "user from redux")
+    
     const data ={ amount ,duration , ...result}
-    console.log(data)
+   
     try{
       setIsLoading(true)
-      const response = await loanRequestService(data)
+      const response = await fixedSaving(data)
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       console.log(response.status)
-      if (response.status===200){
-        setIsLoading(false)
+      if (response.status===201){
+      setIsLoading(false)
       navigate("/")
     }else{
       setDuration("")
@@ -94,7 +95,7 @@ const FixedSaving = () => {
       setDuration("")
       
       NotificationManager.error( error.response.data.message);
-
+      setIsLoading(false)
     }
   
     
@@ -138,7 +139,7 @@ const FixedSaving = () => {
         <button onClick={handleCaculate}  className="w-full text-white bg-[#092256] hover:bg-[#092256] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> Caculate</button>
        
         <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-        <SpinningButton   isLoading={isLoading} onClick={handLoanRequest} buttonName={"Fixed saving"}  classNames="w-full  inset-0 flex items-center justify-center text-white bg-[#092256]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"/> 
+        <SpinningButton   isLoading={isLoading} onClick={handleSumit} buttonName={"Fixed saving"}  classNames="w-full  inset-0 flex items-center justify-center text-white bg-[#092256]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"/> 
      
         </div>
     </div>

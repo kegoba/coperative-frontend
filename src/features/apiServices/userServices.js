@@ -129,7 +129,7 @@ export const FundWalletservices  = async (data)=> {
     
 }
 
-//pending
+
 export const postWalletToWalletTransfer  = async (data)=> {
   const response = await axiosInstance.post("/wallet//wallet-t0-wallet-transfer", data);
 
@@ -137,11 +137,21 @@ export const postWalletToWalletTransfer  = async (data)=> {
     
 }
 
-//pending
+
 export const getUserDetialsByPhone  = async (data)=> {
-  const response = await axiosInstance.post("/user/getuserbyphone", data);//getuserbyphone
+  const response = await axiosInstance.post("/user/getuserbyphone", data);
 
   return response
     
 }
    
+
+
+export const fixedSaving  = async (data)=> {
+  const response = await axiosInstance.post("/saving/create-fixed-saving", data);
+
+  return response
+    
+}
+
+
