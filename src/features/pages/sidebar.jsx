@@ -18,6 +18,7 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
+    navigate('/login')
 
 
   };
@@ -105,10 +106,10 @@ const Sidebar = () => {
               </ul>
             </div>
           </li>
-          <li className="flex items-center p-4 hover:bg-gray-200 " onClick={handleLogout}>
-             
-              <span>Logout</span>
-           
+          <li className="flex items-center p-4 hover:bg-gray-200">
+            <button onClick={handleLogout} className="px-8 py-3">
+              Logout
+            </button>
           </li>
         </ul>
       </div>

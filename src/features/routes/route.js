@@ -1,8 +1,7 @@
 // src/routes/PageRouter.js
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import {store} from "../store/store"
+
 import Login from '../pages/login';
 import Register from '../pages/register';
 import Home from '../pages/home';
@@ -25,7 +24,7 @@ import FixedSaving  from '../pages/fixedSavings';
 
 const PageRouter = () => {
   return (
-    <Provider store={store}>
+
     <BrowserRouter>
       <div className="flex flex-col min-h-screen">
         <Navbar />
@@ -40,36 +39,40 @@ const PageRouter = () => {
               <Route path="/reset-password/:token" element={<ResetPassword />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
 
-              {/*<Route element={<PreviateRoute />}>*/}
+              <Route element={<PreviateRoute />}>
               <Route path="/dashboard" element={<Dashboard />} />
-              {/*</Route>*/}
-              
+              </Route>
+              <Route element={<PreviateRoute />}>
               <Route path="/userslist" element={<ViewAllUsers />} />
-         
-              
+              </Route>
+              <Route element={<PreviateRoute />}>
               <Route path="/loanrequest" element={<LoanRequest />} />
-          
-             
+              </Route>
+              <Route element={<PreviateRoute />}>
               <Route path="/loanhistory" element={<LoanHistory1 />} />
-             
+              </Route>
+              <Route element={<PreviateRoute />}>
               <Route path="/transactionhistory" element={<TransactionHistory />} />
-             
+              </Route>
+              <Route element={<PreviateRoute />}>
               <Route path="/fundwallet" element={<FundWallet />} />
-            
-             
+              </Route>
+              <Route element={<PreviateRoute />}>
               <Route path="/changepassword" element={<ChangePassword />} />
-
+              </Route>
+              <Route element={<PreviateRoute />}>
               <Route path="/wallettransfer" element={<WalletToWalletTransfer />} /> 
-
+              </Route>
+              <Route element={<PreviateRoute />}>
               <Route path="/fixedsaving" element={<FixedSaving />} /> 
-             
+              </Route>
             </Routes>
           </div>
         </div>
         <Footer />
       </div>
     </BrowserRouter>
-    </Provider>
+
   );
 };
 

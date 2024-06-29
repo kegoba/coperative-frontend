@@ -1,14 +1,12 @@
 import axios from 'axios';
+import {jwtDecode} from 'jwt-decode';
+import { tokenExpired } from '../reduxServices/actions';
 
-
-
-
-//
 
 
 
 // Create an Axios instance
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
  //baseURL: "http://localhost:8000/api/v1",
 baseURL:"https://coperative.onrender.com/api/v1"
 });
@@ -33,4 +31,8 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-export default axiosInstance;
+
+
+
+
+ 

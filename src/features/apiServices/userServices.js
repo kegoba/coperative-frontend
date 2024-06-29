@@ -1,5 +1,5 @@
 
-import axiosInstance from "./axiosConfig"
+import {axiosInstance} from "./axiosConfig"
 
 
 export const getAllUserServices  = async ()=> {

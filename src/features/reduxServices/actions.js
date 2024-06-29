@@ -1,6 +1,7 @@
 import {
   LOGIN,
-  LOGOUT
+  LOGOUT,
+  TOKEN_EXPIRED
 } from "./authTypes"
 
 
@@ -12,9 +13,15 @@ export const login = (user) => {
     };
   };
   
-  export const logout = () => {
-    return {
-      type: LOGOUT,
-    };
+export const logout = () => {
+  return {
+    type: LOGOUT,
   };
-  
+};
+
+
+
+
+export const tokenExpired = () => ({
+  type: TOKEN_EXPIRED,
+});
