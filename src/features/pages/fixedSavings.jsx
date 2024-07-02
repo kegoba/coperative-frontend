@@ -23,6 +23,9 @@ const FixedSaving = () => {
   const user = useSelector((state)=>state.auth.user)
 
 
+
+
+  
   React.useEffect(() => {
     const checkUserLogin = localStorage.getItem("user")
     const user = JSON.parse(checkUserLogin)

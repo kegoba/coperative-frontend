@@ -3,7 +3,7 @@ import React from 'react';
 const TransactionHistory = ({ data }) => {
   return (
     <div className="p-4 max-w-4xl mx-auto">
-      <h2 className="text-xl font-bold mb-4">Transaction History</h2>
+      <h2 className="text-sm font-bold mb-4 text-center">Transaction History</h2>
       <div className="container overflow-auto max-h-screen w-full">
         <table className="  bg-white border border-gray-300">
           <thead className="bg-[#092256] text-white rounded">

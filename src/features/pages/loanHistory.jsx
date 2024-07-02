@@ -4,9 +4,9 @@ const LoanHistory = ({ data }) => {
   return (
     <div className="p-4 max-w-4xl mx-auto">
 
-    <h1 className="text-2xl font-bold mb-6">Loan History</h1>
+    <h1 className="text-sm font-bold mb-6 text-center">Loan History</h1>
    
-    <div className="container overflow-auto max-h-screen  w-full  ">
+    <div className="container overflow-auto   w-full  ">
       <table className=" bg-white border border-gray-300 ">
         <thead className='bg-[#092256] text-white'>
           <tr className="bg-muted text-muted-foreground">

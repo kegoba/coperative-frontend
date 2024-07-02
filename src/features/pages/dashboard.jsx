@@ -5,6 +5,7 @@ import TransactionHistory from './transactionHistory';
 import LoanHistory from './loanHistory';
 import { Card, WalletIcon, InterestIcon, interestEarned, Spinner } from '../utilities/reuseAbles';
 import { getDashboardDetails } from '../apiServices/userServices';
+import GetFixedSavings from "./getFixedSavings"
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
@@ -13,7 +14,9 @@ const Dashboard = () => {
   const [transaction, setTransaction] = useState([]);
   const [cashOut, setCashOut] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [loading, setLoading] = useState(true); // Ensure loading is true initially
+  const [loading, setLoading] = useState(true)
+  const [fixedDeposit, setfixedDeposit] = useState(true);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,6 +37,8 @@ const Dashboard = () => {
           setUser(response.data.user);
           setSavings({ interest, balance });
           setLoans(response.data.loans);
+          setfixedDeposit(response.data.fixedsaving);
+          console.log(response.data.fixedsaving, "fix")
         } else {
           console.error('Error fetching dashboard details:', response);
         }
@@ -50,6 +55,10 @@ const Dashboard = () => {
   if (loading) {
     return <Spinner  className='text-center h-5'/>
   }
+   
+
+  
+   
 
   return (
     <div>
@@ -66,8 +75,16 @@ const Dashboard = () => {
           icon={<InterestIcon />}
         />
       </div>
+      <div className='mt-5'>
       <TransactionHistory data={transaction} />
+      </div>
+      <div className='mt-5'>
       <LoanHistory data={loans} />
+      </div>
+
+      <div className='mt-5'>
+      <GetFixedSavings data={fixedDeposit}/>
+      </div> 
     </div>
   );
 };
