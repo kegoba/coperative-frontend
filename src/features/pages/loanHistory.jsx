@@ -5,7 +5,7 @@ const LoanHistory = ({ data }) => {
     <div className="p-4 max-w-4xl mx-auto">
 
     <h1 className="text-2xl font-bold mb-6">Loan History</h1>
-    container overflow-auto  w-full
+   
     <div className="container overflow-auto max-h-screen  w-full  ">
       <table className=" bg-white border border-gray-300 ">
         <thead className='bg-[#092256] text-white'>
