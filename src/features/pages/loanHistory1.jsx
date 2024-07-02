@@ -16,7 +16,7 @@ const LoanHistory1 = () => {
 
   const columns = [
     { header: 'Date', accessor: 'date' },
-    { header: 'Duration', accessor: 'duration' },
+    { header: 'Duration in Months', accessor: 'duration' },
     { header: 'Repayment', accessor: 'monthlyReturn' },
     { header: 'Total Amount To Be Paid', accessor: 'totalAmountToBePaid' },
     { header: 'Amount Borrowed', accessor: 'amountBorrowed' },
@@ -68,17 +68,17 @@ const LoanHistory1 = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className='text-center'>Loading...</div>;
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className='text-center'>{error}</div>;
   }
 
   return (
-      <div className="container overflow-x-auto">
-      <div className="min-w-full inline-block align-middle">
-        <div className=" container overflow-auto max-h-screen w-full max-w-md">
+      <div className="container overflow--auto">
+      
+        <div className=" container overflow-auto max-h-screen w-full ">
         {Array.isArray(loan) && loan.length > 0 ? (
           <Table
             columns={columns}
@@ -90,7 +90,7 @@ const LoanHistory1 = () => {
         ) : (
           <div>No loan records available.</div>
         )}
-      </div>
+   
       </div>
       <NotificationContainer />
     </div>

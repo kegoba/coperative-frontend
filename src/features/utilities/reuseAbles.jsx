@@ -107,43 +107,63 @@ export const Table = ({ columns, data, onApprove, onReject, actionType }) => {
         },
     ];
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString();
+    };
+
+    const formatAmount = (amount) => {
+        return Number(amount).toLocaleString();
+    };
+
+    const formatCellValue = (col, value) => {
+        if (col.accessor === 'date') {
+            return formatDate(value);
+        } else if (
+            col.accessor === 'monthlyReturn' ||
+            col.accessor === 'totalAmountToBePaid' ||
+            col.accessor === 'amountBorrowed'
+        ) {
+            return formatAmount(value);
+        }
+        return value;
+    };
+
     if (!Array.isArray(data)) {
         return <div>No data available.</div>;
     }
 
     return (
- 
-           
-                <table className="min-w-full bg-white">
-                  <thead>
-                    <tr>
-                      {columns?.map((col, index) => (
-                        <th key={index} className="py-2 px-4 text-left text-sm font-semibold text-gray-600">
-                          {col.header}
-                        </th>
-                      ))}
-                      <th className="py-2 px-4 text-left text-sm font-semibold text-gray-600">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.map((item, rowIndex) => (
-                      <tr key={rowIndex} className="border-b last:border-b-0">
-                        {columns?.map((col, colIndex) => (
-                          <td key={colIndex} className="py-2 px-4 text-sm text-gray-700">
-                            {item[col.accessor]}
-                          </td>
+        <div className="container overflow-x-auto overflow-y-auto">
+            <div className="">
+                <table className="w-full bg-white border border-gray-300">
+                    <thead className='bg-[#092256] text-white'>
+                        <tr>
+                            {columns?.map((col, index) => (
+                                <th key={index} className="py-2 px-4">
+                                    {col.header}
+                                </th>
+                            ))}
+                            <th className="py-2 px-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map((item, rowIndex) => (
+                            <tr key={rowIndex} className="border-b">
+                                {columns?.map((col, colIndex) => (
+                                    <td key={colIndex} className="py-2 px-4">
+                                        {formatCellValue(col, item[col.accessor])}
+                                    </td>
+                                ))}
+                                <td className="py-2 px-4 text-right">
+                                    <ThreeDottedAction actions={actions(item)} />
+                                </td>
+                            </tr>
                         ))}
-                        <td className="py-2 px-4 text-right text-sm text-gray-700">
-                          <ThreeDottedAction actions={actions(item)} />
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
+                    </tbody>
                 </table>
-             
-          
-   
-
+            </div>
+        </div>
     );
 };
 
