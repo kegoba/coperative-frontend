@@ -2,29 +2,31 @@ import React from 'react';
 
 const LoanHistory = ({ data }) => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="p-4 max-w-4xl mx-auto">
+
     <h1 className="text-2xl font-bold mb-6">Loan History</h1>
-    <div className="overflow-x-auto">
-      <table className="md:w-full sm:w-[400px] overflow-x-auto overflow-y-auto table-auto">
+    container overflow-auto  w-full
+    <div className="container overflow-auto max-h-screen  w-full  ">
+      <table className=" bg-white border border-gray-300 ">
         <thead className='bg-[#092256] text-white'>
           <tr className="bg-muted text-muted-foreground">
-          <th className="py-1 px-1 border-b">Date</th>
-            <th className="py-2 px-4 border-b">Duration</th>
-            <th className="py-1 px-1 border-b">Repayment</th>
-            <th className="py-2 px-4 border-b">Principal</th>
-            <th className="py-2 px-4 border-b">Amount Payable</th>
-            <th className="py-2 px-4 border-b">Status</th>
+          <th className="py-2 px-4 border-b whitespace-nowrap md:w-1/5 sm:w-2">Date</th>
+            <th className="py-2 px-4 border-b whitespace-nowrap md:w-1/5 sm:w-2">Duration</th>
+            <th className="py-2 px-4 border-b whitespace-nowrap md:w-1/5 sm:w-2">Repayment</th>
+            <th className="py-2 px-4 border-b whitespace-nowrap md:w-1/5 sm:w-2">Principal</th>
+            <th className="py-2 px-4 border-b whitespace-nowrap md:w-1/5 sm:w-2">Amount Payable</th>
+            <th className="py-2 px-4 border-b whitespace-nowrap md:w-1/5 sm:w-2">Status</th>
           </tr>
         </thead>
        <tbody>
           {data.length > 0 ? (
             data.map((loan, key) => (
               <tr key={key}>
-                <td className="py-2 px-4 border-b">{new Date(loan.date).toLocaleDateString()}</td>
-                <td className="py-2 px-4 border-b">{loan.duration}</td>
-                <td className="py-2 px-4 border-b">{loan?.monthlyReturn?.toLocaleString()}</td>
-                <td className="py-2 px-4 border-b">{loan?.amountBorrowed?.toLocaleString()}</td>
-                <td className="py-2 px-4 border-b">{loan?.totalAmountToBePaid?.toLocaleString()}</td>
+                <td className="py-2 px-4 border-b whitespace-nowrap md:w-1/5 sm:w-2">{new Date(loan.date).toLocaleDateString()}</td>
+                <td className="py-2 px-4 border-b whitespace-nowrap md:w-1/5 sm:w-2">{loan.duration}</td>
+                <td className="py-2 px-4 border-b whitespace-nowrap md:w-1/5 sm:w-2">{loan?.monthlyReturn?.toLocaleString()}</td>
+                <td className="py-2 px-4 border-b whitespace-nowrap md:w-1/5 sm:w-2">{loan?.amountBorrowed?.toLocaleString()}</td>
+                <td className="py-2 px-4 border-b whitespace-nowrap md:w-1/5 sm:w-2">{loan?.totalAmountToBePaid?.toLocaleString()}</td>
                 <span
                   className={`px-2 py-1 rounded-full text-xs font-medium ${
                     loan.status === "approved"

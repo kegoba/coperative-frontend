@@ -28,9 +28,9 @@ const PageRouter = () => {
     <BrowserRouter>
       <div className="flex flex-col min-h-screen">
         <Navbar />
-        <div className="flex flex-grow">
+        <div className="flex flex-grow overflow-hidden">
           <Sidebar />
-          <div className="flex-grow p-4 lg:ml-30">
+          <div className="flex-grow p-4 overflow-x-auto lg:ml-30">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />

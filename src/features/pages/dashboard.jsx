@@ -51,9 +51,9 @@ const Dashboard = () => {
   }, [navigate]);
 
   return (
-    <div className=" container">
+    <div>
       
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:ml-40">
+    <div className="grid grid-cols-2  gap-6 md:ml-40 overflow-auto w-full">
         <Card className="w-1"
             title="Wallet Balance" 
             value={savings.balance.toFixed(2)} 
@@ -66,13 +66,12 @@ const Dashboard = () => {
         />
     </div>
     
-        <div className=" ">
+         
           <TransactionHistory data={transaction} />
-        </div>
-     
-        <div className="">
+        
+      
           <LoanHistory data={loans} />
-        </div>
+   
       </div>
 
   );

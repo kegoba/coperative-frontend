@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import { Table } from '../utilities/reuseAbles';
-
-import { getloanRequestService,cancelloanRequestService } from "../apiServices/userServices";
+import { getloanRequestService, cancelloanRequestService } from "../apiServices/userServices";
 
 const LoanHistory1 = () => {
   const [loan, setLoan] = useState([]);
@@ -28,8 +27,7 @@ const LoanHistory1 = () => {
     const fetchLoanRequests = async () => {
       try {
         const response = await getloanRequestService();
-        if (response ) {
-       
+        if (response) {
           setLoan(response.data.data);
         } else {
           console.error('No data found in response');
@@ -47,35 +45,26 @@ const LoanHistory1 = () => {
   }, []);
 
   const handleCancel = async (item) => {
-    try{
-    setLoading(true)
-    const response = await cancelloanRequestService(item._id)
-    if(response){
-      
-        setLoading(false)
+    try {
+      setLoading(true);
+      const response = await cancelloanRequestService(item._id);
+      if (response) {
+        setLoading(false);
         setTimeout(() => {
-            NotificationManager.success(response.data.data);
-          }, 1000);
-    }
-
-} catch(error){
-   
-    
-    setLoading(false)
-    setTimeout(() => {
-        NotificationManager.error( error.response.data.message);
+          NotificationManager.success(response.data.data);
+        }, 1000);
+      }
+    } catch (error) {
+      setLoading(false);
+      setTimeout(() => {
+        NotificationManager.error(error.response.data.message);
       }, 1000);
-
-}
-
-
-   
+    }
   };
 
   const handleLiquidate = (item) => {
     console.log('handleLiquidate:', item._id);
     // Add your reject logic here
-    
   };
 
   if (loading) {
@@ -87,19 +76,22 @@ const LoanHistory1 = () => {
   }
 
   return (
-    <div className="App p-4">
-      <h1 className="text-xl mb-4">Loan Records</h1>
-      {Array.isArray(loan) && loan.length > 0 ? (
-        <Table
-          columns={columns}
-          data={loan}
-          onApprove={handleCancel}
-          onReject={handleLiquidate}
-          actionType={actionType}
-        />
-      ) : (
-        <div>No loan records available.</div>
-      )}
+      <div className="container overflow-x-auto">
+      <div className="min-w-full inline-block align-middle">
+        <div className=" container overflow-auto max-h-screen w-full max-w-md">
+        {Array.isArray(loan) && loan.length > 0 ? (
+          <Table
+            columns={columns}
+            data={loan}
+            onApprove={handleCancel}
+            onReject={handleLiquidate}
+            actionType={actionType}
+          />
+        ) : (
+          <div>No loan records available.</div>
+        )}
+      </div>
+      </div>
       <NotificationContainer />
     </div>
   );

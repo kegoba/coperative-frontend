@@ -95,10 +95,6 @@ const ThreeDottedAction = ({ actions }) => {
 
 
 
-
-
-
-
 export const Table = ({ columns, data, onApprove, onReject, actionType }) => {
     const actions = (item) => [
         {
@@ -109,7 +105,6 @@ export const Table = ({ columns, data, onApprove, onReject, actionType }) => {
             label: Object.values(actionType)[1],
             onClick: () => onReject(item),
         },
-        // Add more actions here if needed
     ];
 
     if (!Array.isArray(data)) {
@@ -117,34 +112,41 @@ export const Table = ({ columns, data, onApprove, onReject, actionType }) => {
     }
 
     return (
-        <table className="min-w-full bg-white">
-            <thead>
-                <tr>
-                    {columns?.map((col, index) => (
-                        <th key={index} className="py-2 px-4">
-                            {col.header}
+ 
+           
+                <table className="min-w-full bg-white">
+                  <thead>
+                    <tr>
+                      {columns?.map((col, index) => (
+                        <th key={index} className="py-2 px-4 text-left text-sm font-semibold text-gray-600">
+                          {col.header}
                         </th>
-                    ))}
-                    <th className="py-2 px-4">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {data.map((item, rowIndex) => (
-                    <tr key={rowIndex} className="border-b">
-                        {columns?.map((col, colIndex) => (
-                            <td key={colIndex} className="py-2 px-4">
-                                {item[col.accessor]}
-                            </td>
-                        ))}
-                        <td className="py-2 px-4 text-right">
-                            <ThreeDottedAction actions={actions(item)} />
-                        </td>
+                      ))}
+                      <th className="py-2 px-4 text-left text-sm font-semibold text-gray-600">Actions</th>
                     </tr>
-                ))}
-            </tbody>
-        </table>
+                  </thead>
+                  <tbody>
+                    {data.map((item, rowIndex) => (
+                      <tr key={rowIndex} className="border-b last:border-b-0">
+                        {columns?.map((col, colIndex) => (
+                          <td key={colIndex} className="py-2 px-4 text-sm text-gray-700">
+                            {item[col.accessor]}
+                          </td>
+                        ))}
+                        <td className="py-2 px-4 text-right text-sm text-gray-700">
+                          <ThreeDottedAction actions={actions(item)} />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+             
+          
+   
+
     );
 };
+
 
 
 
