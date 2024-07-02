@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
-import { Table } from '../utilities/reuseAbles';
+import { Table, Spinner} from '../utilities/reuseAbles';
 import { getloanRequestService, cancelloanRequestService } from "../apiServices/userServices";
 
 const LoanHistory1 = () => {
@@ -68,13 +68,10 @@ const LoanHistory1 = () => {
   };
 
   if (loading) {
-    return <div className='text-center'>Loading...</div>;
+    return <Spinner/>
   }
 
-  if (error) {
-    return <div className='text-center'>{error}</div>;
-  }
-
+ 
   return (
       <div className="container overflow--auto">
       
